@@ -392,7 +392,7 @@ This document outlines the functionalities and usage of the Pharma-Warehouse API
 
 #### 7. Search Medications 
 - **URL:**  [http://127.0.0.1:8000/api/medications/search]() 
-- **Method:**  GET 
+- **Method:**  POST 
 - **Authorization:**  Not required 
 - **Parameters:** 
 - searchTerm (string, required): Search term for medications. 
@@ -424,7 +424,15 @@ This document outlines the functionalities and usage of the Pharma-Warehouse API
 - **Status Code:**  `200` OK 
 
 - **Response Example (Error):** 
-- No specific error response for this endpoint.
+
+```json
+{
+  "message": "Medication not found"
+}
+```
+
+ 
+- **Status Code:**  `404` Not Found
 
 
 
