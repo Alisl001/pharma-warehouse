@@ -902,3 +902,150 @@ This document outlines the functionalities and usage of the Pharma-Warehouse API
 
  
 - **Status Code:**  `200` OK
+
+
+
+### Notifications Endpoints
+
+
+#### 1. Get Notifications 
+- **URL:**  [http://127.0.0.1:8000/api/notifications]() 
+- **Method:**  GET 
+- **Authorization:**  Required (Bearer Token) 
+- **Parameters:** 
+- None 
+- **Request Example:** 
+- No additional parameters required. 
+- **Response Example (Success):** 
+
+```json
+{
+  "notifications": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "message": "New order #123 placed",
+      "read_at": null,
+      "created_at": "2024-01-01T12:00:00.000000Z",
+      "updated_at": "2024-01-01T12:00:00.000000Z"
+    },
+    {
+      "id": 2,
+      "user_id": 1,
+      "message": "Order #456 status changed to processing",
+      "read_at": null,
+      "created_at": "2024-01-02T10:30:00.000000Z",
+      "updated_at": "2024-01-02T10:30:00.000000Z"
+    }
+  ]
+}
+```
+
+ 
+- **Status Code:**  `200` OK 
+
+- **Response Example (Error):**
+
+```json
+{
+  "error": "You have no new notifications"
+}
+```
+
+ 
+- **Status Code:**  `404` Not Found
+
+
+#### 2. Mark Notification as Read 
+- **URL:**  [http://127.0.0.1:8000/api/notifications/{notificationId}/mark-as-read]() 
+- **Method:**  PUT 
+- **Authorization:**  Required (Bearer Token) 
+- **Parameters:** 
+- notificationId (integer, path, required): ID of the notification. 
+- **Request Example:** 
+- No additional parameters required. 
+- **Response Example (Success):** 
+
+```json
+{
+  "message": "Notification marked as read"
+}
+```
+
+ 
+- **Status Code:**  `200` OK 
+
+- **Response Example (Error):**
+
+```json
+{
+  "error": "Notification not found or unauthorized"
+}
+```
+
+ 
+- **Status Code:**  `404` Not Found
+
+
+#### 3. Send New Order Notification 
+- **URL:**  [http://127.0.0.1:8000/api/notifications/send-new-order/{orderId}]() 
+- **Method:**  POST 
+- **Authorization:**  Required (Bearer Token) 
+- **Parameters:** 
+- orderId (integer, path, required): ID of the new order. 
+- **Request Example:** 
+- No additional parameters required. 
+- **Response Example (Success):** 
+
+```json
+{
+  "message": "Notifications sent successfully"
+}
+```
+
+ 
+- **Status Code:**  `200` OK 
+
+- **Response Example (Error):**
+
+```json
+{
+  "error": "Order not found"
+}
+```
+
+ 
+- **Status Code:**  `404` Not Found
+
+
+#### 4. Send Order Status Notification 
+- **URL:**  [http://127.0.0.1:8000/api/notifications/send-order-status/{orderId}/{newStatus}]() 
+- **Method:**  POST 
+- **Authorization:**  Required (Bearer Token and Warehouse Owner role) 
+- **Parameters:** 
+- orderId (integer, path, required): ID of the order.
+- newStatus (string, path, required): New status for the order. 
+- **Request Example:** 
+- No additional parameters required. 
+- **Response Example (Success):** 
+
+```json
+{
+  "message": "Notifications sent successfully"
+}
+```
+
+ 
+- **Status Code:**  200 OK 
+
+- **Response Example (Error):**
+
+```json
+{
+  "error": "Order not found"
+}
+```
+
+ 
+- **Status Code:**  `404` Not Found
+
