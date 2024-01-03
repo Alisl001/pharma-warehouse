@@ -616,8 +616,8 @@ This document outlines the functionalities and usage of the Pharma-Warehouse API
   "order": {
     "id": 1,
     "pharmacist_id": 2,
-    "status": "sent",
-    "payment_status": "paid",
+    "status": "preparing",
+    "payment_status": "unpaid",
     "created_at": "2024-01-03T21:50:32.000000Z",
     "updated_at": "2024-01-03T21:59:19.000000Z",
     "order_medications": [
