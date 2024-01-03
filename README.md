@@ -568,7 +568,7 @@ This document outlines the functionalities and usage of the Pharma-Warehouse API
 {
   "medications": [
     {
-      "medication": "Paracetamol",
+      "medication": "Acetaminophen",
       "quantity": 10
     },
     {
@@ -615,26 +615,29 @@ This document outlines the functionalities and usage of the Pharma-Warehouse API
 {
   "order": {
     "id": 1,
-    "pharmacist_id": 123,
-    "status": "preparing",
-    "payment_status": "unpaid",
-    "orderMedications": [
+    "pharmacist_id": 2,
+    "status": "sent",
+    "payment_status": "paid",
+    "created_at": "2024-01-03T21:50:32.000000Z",
+    "updated_at": "2024-01-03T21:59:19.000000Z",
+    "order_medications": [
       {
         "id": 1,
         "order_id": 1,
+        "medication_id": 1,
+        "quantity": 10,
+        "created_at": "2024-01-03T21:50:32.000000Z",
+        "updated_at": "2024-01-03T21:50:32.000000Z"
+      },
+      {
+        "id": 2,
+        "order_id": 1,
         "medication_id": 2,
         "quantity": 5,
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-01T00:00:00Z",
-        "medication": {
-          "id": 2,
-          "scientific_name": "Paracetamol"
-        }
-      },
-      // ... other order medications
-    ],
-    "created_at": "2024-01-01T00:00:00Z",
-    "updated_at": "2024-01-01T00:00:00Z"
+        "created_at": "2024-01-03T21:50:32.000000Z",
+        "updated_at": "2024-01-03T21:50:32.000000Z"
+      }
+    ]
   }
 }
 ```
@@ -819,7 +822,35 @@ This document outlines the functionalities and usage of the Pharma-Warehouse API
 ### Reports Endpoints
 
 
-#### 1. Weekly Sales Report 
+#### 1. Daily Sales Report 
+- **URL:**  [http://127.0.0.1:8000/api/reports/daily-sales]() 
+- **Method:**  GET 
+- **Authorization:**  Required (Bearer Token and Warehouse Owner role) 
+- **Parameters:** 
+- None 
+- **Request Example:** 
+- No additional parameters required. 
+- **Response Example (Success):** 
+
+```json
+{
+  "report_type": "Daily Sales Report",
+  "number_of_orders": 1,
+  "number_of_pharmacists": 1,
+  "quantities_sold": 15,
+  "total_prices": 99.85000000000001,
+  "best_selling_medication": "Acetaminophen",
+  "start_date": "2024-01-03",
+  "end_date": "2024-01-03"
+}
+```
+
+ 
+- **Status Code:**  `200` OK
+
+
+
+#### 2. Weekly Sales Report 
 - **URL:**  [http://127.0.0.1:8000/api/reports/weekly-sales]() 
 - **Method:**  GET 
 - **Authorization:**  Required (Bearer Token and Warehouse Owner role) 
@@ -836,6 +867,7 @@ This document outlines the functionalities and usage of the Pharma-Warehouse API
   "number_of_pharmacists": 7,
   "quantities_sold": 120,
   "total_prices": 1500.50,
+  "best_selling_medication": "Acetaminophen",
   "start_date": "2023-12-25",
   "end_date": "2024-01-01"
 }
@@ -845,7 +877,7 @@ This document outlines the functionalities and usage of the Pharma-Warehouse API
 - **Status Code:**  `200` OK
 
 
-#### 2. Monthly Sales Report 
+#### 3. Monthly Sales Report 
 - **URL:**  [http://127.0.0.1:8000/api/reports/monthly-sales]() 
 - **Method:**  GET 
 - **Authorization:**  Required (Bearer Token and Warehouse Owner role) 
@@ -862,6 +894,7 @@ This document outlines the functionalities and usage of the Pharma-Warehouse API
   "number_of_pharmacists": 15,
   "quantities_sold": 320,
   "total_prices": 4000.25,
+  "best_selling_medication": "Acetaminophen",
   "start_date": "2023-12-01",
   "end_date": "2023-12-31"
 }
