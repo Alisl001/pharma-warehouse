@@ -768,7 +768,7 @@ This document outlines the functionalities and usage of the Pharma-Warehouse API
 
 ```json
 {
-  "message": "Order status changed successfully"
+  "message": "Order status changed successfully. New quantities: Acetaminophen: 90, Ibuprofen: 75"
 }
 ```
 
